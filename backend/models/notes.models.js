@@ -3,11 +3,11 @@ import mongoose, { Schema } from "mongoose";
 const noteSchema = new Schema({
     title: {
         type: String,
-        required: true,
+        // required: true,
     },
     content: {
         type: String,
-        required: true,
+        // required: true,
     },
     isCompleted: {
         type: Boolean,

@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mongo_db/core/notes_service.dart';
 import 'package:mongo_db/features/note_page.dart';
 import 'package:mongo_db/model/notes_model.dart';

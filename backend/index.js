@@ -2,11 +2,14 @@ import mongoose from "mongoose";
 import express from "express";
 import { router } from "./routes/notes.routes.js";
 import { connectDB } from "./connect.js";
+const dotenv = require("dotenv");
 
 const app = express();
 const PORT = 8000;
 
-app.use(express.json());    
+dotenv.config();
+
+app.use(express.json());
 connectDB();
 
 app.listen(PORT, () => {

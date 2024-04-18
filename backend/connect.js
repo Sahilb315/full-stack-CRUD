@@ -2,9 +2,7 @@ import mongoose from "mongoose";
 
 async function connectDB() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://Sahil:Sahil315@cluster0.dkxhtbh.mongodb.net/full_stack"
-    ).then(()=> {
+    await mongoose.connect(process.env.MONGO_DB_URI).then(()=> {
         console.log("Connected to database");
     });
   } catch (error) {

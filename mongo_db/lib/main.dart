@@ -13,9 +13,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    return MaterialApp(
+      home: const HomePage(),
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Colors.blue,
+          selectionHandleColor: Colors.blue,
+        ),
+      ),
     );
   }
 }

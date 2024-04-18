@@ -8,15 +8,24 @@ import 'package:mongo_db/model/notes_model.dart';
 class NotesService {
   Future<void> createNewNote(NotesModel noteModel) async {
     try {
+      final body = jsonEncode({
+        "title": noteModel.title,
+        "content": noteModel.content,
+      });
       final res = await http.post(
         Uri.parse("$BASE_URL/"),
-        body: noteModel.toJson(),
+        body: body,
+        headers: {
+          "Content-Type": "application/json",
+        },
       );
+      log(res.statusCode.toString());
       if (res.statusCode == 201) {
-        log(res.body);
+        // log(res.data.toString());
+        log(res.body.toString());
       }
     } catch (e) {
-      log(e.toString());
+      log("Error while creating a new note : $e");
     }
   }
 
@@ -50,6 +59,32 @@ class NotesService {
     } catch (e) {
       log(e.toString());
       return null;
+    }
+  }
+
+  Future<void> updateNote(String noteId, NotesModel noteModel) async {
+    try {
+      final body = jsonEncode({
+        "title": noteModel.title,
+        "content": noteModel.content,
+      });
+      await http.put(
+        Uri.parse("$BASE_URL/$noteId"),
+        body: body,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      );
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<void> deleteNote(String noteId) async {
+    try {
+      await http.delete(Uri.parse("$BASE_URL/$noteId"));
+    } catch (e) {
+      log(e.toString());
     }
   }
 }

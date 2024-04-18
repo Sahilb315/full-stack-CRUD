@@ -35,7 +35,7 @@ async function getAllNotes(req, res) {
 async function getSpecificNote(req, res) {
   try {
     const id = req.params.id;
-    const specificNote = await Note.findById({ _id : id });
+    const specificNote = await Note.findById({ _id: id });
     res.status(200).send({
       note: specificNote,
     });
@@ -46,10 +46,10 @@ async function getSpecificNote(req, res) {
   }
 }
 
-async function deleteNote(req, res){
+async function deleteNote(req, res) {
   try {
     const id = req.params.id;
-    await Note.findByIdAndDelete({ _id : id });
+    await Note.findByIdAndDelete({ _id: id });
     res.status(200).send({
       msg: "Note deleted successfully",
     });
@@ -60,4 +60,23 @@ async function deleteNote(req, res){
   }
 }
 
-export { createNote, getAllNotes, getSpecificNote , deleteNote};
+async function updateNote(req, res) {
+  try {
+    const id = req.params.id;
+
+    await Note.findByIdAndUpdate(id, {
+      title: req.body.title,
+      content: req.body.content,
+      isCompleted: req.body.isCompleted,
+    });
+    res.status(200).send({
+      msg: "Note Updated successfully",
+    });
+  } catch (error) {
+    res.status(500).send({
+      msg: error.message,
+    });
+  }
+}
+
+export { createNote, getAllNotes, getSpecificNote, deleteNote, updateNote };

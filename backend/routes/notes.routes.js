@@ -4,7 +4,8 @@ import {
   createNote,
   getAllNotes,
   getSpecificNote,
-  deleteNote
+  deleteNote,
+  updateNote
 } from "../controllers/notes.controllers.js";
 
 const router = express.Router();
@@ -18,5 +19,7 @@ router
 .route("/:id")
 .get(getSpecificNote)
 .delete(deleteNote)
+.put(updateNote);
+
 
 export { router };

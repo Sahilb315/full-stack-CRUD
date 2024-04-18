@@ -3,7 +3,7 @@ import { Note } from "../models/notes.models.js";
 async function createNote(req, res) {
   try {
     const body = req.body;
-    const note = await Note.create({
+    await Note.create({
       title: body.title,
       content: body.content,
       isCompleted: body.isCompleted,
@@ -12,6 +12,7 @@ async function createNote(req, res) {
       msg: "Note created successfully",
     });
   } catch (error) {
+    console.log(error.message);
     res.status(500).send({
       msg: error.message,
     });

@@ -11,7 +11,6 @@ const noteSchema = new Schema({
     },
     isCompleted: {
         type: Boolean,
-        required: true,
         default: false,
     },
 }, { timestamps: true });

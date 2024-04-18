@@ -46,4 +46,18 @@ async function getSpecificNote(req, res) {
   }
 }
 
-export { createNote, getAllNotes, getSpecificNote };
+async function deleteNote(req, res){
+  try {
+    const id = req.params.id;
+    await Note.findByIdAndDelete({ _id : id });
+    res.status(200).send({
+      msg: "Note deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).send({
+      msg: error.message,
+    });
+  }
+}
+
+export { createNote, getAllNotes, getSpecificNote , deleteNote};
